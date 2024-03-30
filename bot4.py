@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 import requests
 import logging
-
+from config import BOT_TOKEN, YANDEX_TOKEN, FOLDER_ID 
 from logging.handlers import RotatingFileHandler
 
 logging.basicConfig(level=logging.INFO,
@@ -16,11 +16,8 @@ logging.getLogger('').addHandler(log_file_handler)
 
 
 logging.basicConfig(level=logging.INFO)
-BOT_TOKEN = ''
 bot = telebot.TeleBot(BOT_TOKEN)
 
-YANDEX_TOKEN = ''
-FOLDER_ID = ''
 user_choices = {}
 
 @bot.callback_query_handler(func=lambda call: call.data == 'debug')
@@ -43,7 +40,7 @@ def ask_gpt(prompt):
         "completionOptions": {
             "stream": False,
             "temperature": 0.6,
-            "maxTokens": 20
+            "maxTokens": 120
         },
         "messages": [
             {
